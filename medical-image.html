@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-right-half {
+            width: 50%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center;">Medical Image Classification</h2>
+    </header>
+
+
+    <main style="color:black">
+        <section>
+            <h3 style="text-align:center;">Overview</h3>
+            <p style="text-align:justify;"> The project involves classification of medical images collected from X-ray, MRI and CT scans into five categories—Hand, Breast, Head, Abdomen, and
+                 Chest—using two deep learning models: a Multi-Layer Perceptron (MLP) and a Convolutional Neural Network (CNN).</p>
+            	
+		
+		
+		</section>
+
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+            <p style="text-align:justify;">The dataset used was sourced from Kaggle and contains 48,954 images. The dataset comprises 10,000 images for each category except for Breast, which contains 8,954 images. Images are 64x64 pixels with single channel. </p>
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Data Preprocessing</h3>
+            <p>All the images were normalized and the dataset was shuffled and split into training, validation, and test sets with 80:10:10 ratio.
+                Let's take a look at different categories of images in the dataset.</p>
+            <div class="img-single"> <img src="images/proj-images/med-image-classes.png" alt="image" style="width:95%; height: 650px; float:left; margin-left: 5px;"> </div>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Deep Learning Classification Modeling</h3> 
+            <p>All the deep learning models were built using keras in tensorflow library utilizing a sequential model.</p>
+            <section>
+                <h3 style="text-align:left;">Multi-Layer Perceptron (MLP)/Dense Neural Networks (DNN)</h3> 
+                <p>MLP1 model: This model consists of </p>
+                <ul>
+                    <li>An input layer that flattens the 64x64 images into a 4096-feature vector.</li>
+                    <li>Two hidden layers with 25 and 15 units, and ReLU activation.</li>
+                    <li>An output softmax classification layer with 5 units, corresponding to the 5 categories.</li>
+                </ul>
+                <p>MLP2 model: This model consists of </p>
+                <ul>
+                    <li>An input layer that flattens the 64x64 images into a 4096-feature vector.</li>
+                    <li>Three hidden layers with 50, 25 and 15 units, and ReLU activation.</li>
+                    <li>An output softmax classification layer with 5 units, corresponding to the 5 categories.</li>
+                </ul>
+                <p>Test Results with MLP models:</p>
+                <ul>
+                    <li>Both models were trained for 30 epochs, achieving a test accuracy of over 99%.</li>
+                    <li>MLP2 model had better precision, recall and F1 scores than MLP1</li>
+                    <li>Plots below show the comparison of the classification reports and the confusion matrix  from both models. MLP1 on left and MLP2 on right</li>
+                </ul>
+                <div class="img-container"> <img src="images/proj-images/mlp1-metrics.png" alt="image" style="width:100%; height: 220px; float:left; margin-left: 5px;"> </div>
+                <div class="img-container"> <img src="images/proj-images/mlp2-metrics.png" alt="image" style="width:100%; height: 220px; float:left; margin-left: 5px;"> </div>
+                <div class="img-container"> <img src="images/proj-images/conf-mlp1.png" alt="image" style="width:100%; height: 300px; float:left; margin-left: 5px;"> </div>
+                <div class="img-container"> <img src="images/proj-images/conf-mlp2.png" alt="image" style="width:100%; height: 300px; float:left; margin-left: 5px;"> </div>
+
+            </section>
+            <section style="text-align:justify;">
+                <h3 style="text-align:left;">Convolutional Neural Network (CNN)</h3> 
+                <p>A simplified CNN model was implemented, which generally provides better results for image data due to its ability to capture spatial hierarchies in images. 
+                    Different version of CNN is widely used for computer vision tasks which can build deep learning models efficiently with lesser number of shared parameters and its ability to identify different features with translational invariance.</p>
+                    <div class="img-right-half"> <img src="images/proj-images/med-cnn.png" alt="image" style="width:100%; height: 450px; float:left; margin-left: 5px;"> </div>
+                <ul>
+                    <li>  On right shows the schematics of the CNN network with 4 convolutional layers followed by pooling layers.
+                    </li>
+                    <li>Last part of the deep network is flattened and fed to a 3 layers of DNN.</li>
+                    <li> Output of DNN connected to a softmax function</li>
+                    <li> Valid padding and relu activation is used in all hidden layers.</li>
+
+                </ul>
+               <p> Test Results with CNN:</p>
+               <ul>
+                <li>The CNN model trained for 10 epochs showed an immense improvement in the classification metrics over the two MLP models, as expected with image data.</li> 
+                <li> The misclassification of
+                     hand and chest images were reduced significantly with the CNN model. Only 3 images were misclassifed with the CNN model.</li>
+                <li>Plots below shows the classification report and confusion matrix from the CNN model.</li>
+                <div class="img-container"> <img src="images/proj-images/cnn-metrics.png" alt="image" style="width:100%; height: 220px; float:left; margin-left: 5px;"> </div>
+                <div class="img-container"> <img src="images/proj-images/conf-cnn.png" alt="image" style="width:100%; height: 280px; float:left; margin-left: 5px;"> </div>
+                <li>These are the three misclassified examples with the CNN. Additional similar misclassified samples are required for the model to understand such outlier images.
+                    Image augmentation techniques can be used to solve this problem. However, our current CNN model is performing exeptionally well on unseen test data.
+                </li>
+                <div class="img-single"> <img src="images/proj-images/cnn-mis.png" alt="image" style="width:90%; height: 230px; float:left; margin-left: 5px;"> </div>
+
+               </ul>
+            
+            </section>
+
+        </section>
+        <section>
+            <h3 style="text-align:center;">Conclusion</h3> 
+            <p style="text-align:justify;">Both MLP models successfully classified the medical images, with the CNN outperforming exceptionally well due to its architecture being more suited for image processing. This project demonstrates a comprehensive 
+                approach to solving a multi-class image classification problem using deep learning techniques. </p>  
+                <p>The complete code for this project can be found <span style="color:blue"><a href="https://github.com/savinshynu/DS-Projects/blob/master/Medical-Image-Classification/Medical-Image-Classification-Deeplearning.ipynb">here.</a> </span> </p>
+        </section>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

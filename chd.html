@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-right-half {
+            width: 50%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center;">Coronary Heart Disease Classification</h2>
+    </header>
+
+
+    <main style="color:black;text-align:justify;">
+        <section>
+            <h3 style="text-align:center;">Objective</h3>
+            <p> The primary objective of this project is to develop a machine learning model that can accurately predict the likelihood of a person developing coronary heart disease (CHD) within the next 10 years based on their demographic, behavioral, and medical risk factors. The project also aims to identify the most significant factors 
+                contributing to the risk of CHD. Early prognosis and adapting health life styles can aid in avoiding heart diseases.</p>
+		</section>
+
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+            <p>The dataset used in this project consists of 16 features and 4,238 records. 
+                The data was obtained from Kaggle and includes the following types of variables:</p>
+                <ul>
+                    <li>Demographic: Age, Sex</li>
+                    <li>Behavioral: Current Smoker, Cigarettes Per Day</li>
+                    <li>Medical History: BP Meds, Prevalent Stroke, Prevalent Hypertension, Diabetes</li>
+                    <li>Current Medical: Total Cholesterol, Systolic BP, Diastolic BP, BMI, Heart Rate, Glucose</li>
+                    <li>Target Variable: Ten-year risk of CHD (binary: "1" means "Yes", "0" means "No")</li>
+                </ul>
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Data Exploration and Preprocessing</h3>
+            <ul>
+                <li>Exploration: The dataset was examined for missing values, distribution of features, and correlation among variables. It was found that the dataset 
+                    is imbalanced, with only about 15% of the population having a predicted ten-year risk of CHD.</li>
+                <li>Plot showing the histogram distribution of different features. </li>
+                <div class="img-single"> <img src="images/proj-images/hist_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin-left: 5px;"> </div>
+                <li>Plot showing the correlation between different features in the dataset.</li>
+                <div class="img-single"> <img src="images/proj-images/corr_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin-left: 5px;"> </div>
+                <li>Missing Values: Missing values were identified in several columns (e.g., education, cigsPerDay, BPMeds). These missing values were 
+                    imputed using the median of the respective columns.</li>
+                <li>Feature Scaling: Standardization (z-score normalization) was applied to the dataset to ensure that all features contribute equally to the model training process.
+                     This was essential to prevent bias towards features with larger numerical ranges.</li>
+                
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Machine Learning Modeling</h3> 
+            <p>Different machine learning models were trained and evaluated for the classification task:</p>
+            <span style="color:blue">
+            <ul>
+                <li>Logistic Regression (LR)</li>
+                <li>Decision Trees (DT)</li>
+                <li>Bagged Decision Trees (BGD)</li>
+                <li>Random Forest (RF)</li>
+                <li>AdaBoost (AB)</li>
+                <li>Gradient Boosting (GB)</li>
+                <li>XGBoost (XGB)</li>
+                <li>Linear Kernel Support Vector Machine (LSVM)</li>
+                <li>Polynomial Kernel Support Vector Machine (PSVM)</li>
+                <li>Dense Neural Network (DNN)</li>
+            </ul>
+             </span>
+            <p>The models were evaluated based on their accuracy, precision, recall, and F1-score. 
+                Cross-validation was used to ensure that the models generalize well to unseen data</p>
+            
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Results</h3> 
+            <ul>
+                <li>Best Model: Interestingly, the logistic regression model performed the best compared to the other complex tree and neural network models, showing the highest accuracy and F1-score. The accuracy score of the models were mostly close to 83%. 
+                    However the precision, recall and F1-score varied a lot.</li>
+                    <div class="img-single"> <img src="images/proj-images/metrics-chd.png" alt="image" style="width:98%; height: 300px; float:left; margin-left: 5px;"> </div>
+                <li>Feature Importance: The most significant predictors of CHD identified by the best model include age, systolic BP, and prevalence of hypertension.</li>
+                <li>The reason for having low F1 scores is because of the low recall score of models. This arises from imbalanced data where models are not learning the features of the underrepresented group well enough. </li>
+                <li>Class weights were introduced to tackle this imbalance issue by adding higher penalty to the misclassification of the minority class. This step increased the recall; however, it reduced the precision of the model.</li>
+
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Model Hyperparameter Tuning</h3> 
+            <p>The best-performing model (logistic regression) was fine-tuned using grid search and randomized search to optimize its hyperparameters. This further improved the model's performance.</p>
+            <p>Below shows the final confusion matrix and classification report of the test data using the fine-tuned logistic regression model.</p>
+            <div class="img-single"> <img src="images/proj-images/final-res-chd.png" alt="image" style="width:98%; height: 600px; float:left; margin-left: 5px;"> </div>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Conclusion</h3> 
+            <p>The project successfully developed a model that can predict the ten-year risk of coronary heart disease. The results highlight the importance of early detection and lifestyle changes to mitigate the risk of CHD. The findings also emphasize the critical role of factors like age, blood pressure, and hypertension in predicting heart disease. 
+                The classification metrics can be improved further by collecting more data of the minority class.</p>
+            <p>The complete code for this project can be found <span style="color:blue"><a href="https://github.com/savinshynu/DS-Projects/blob/master/Heart-Disease-Classification/heart-disease-classification.ipynb">here.</a> </span></p>
+        </section>
+
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

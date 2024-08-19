@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-right-half {
+            width: 50%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center;">Walmart Sales Prediction in R </h2>
+    </header>
+
+
+    <main style="color:black">
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Introduction</h3>
+            <p>The Walmart Sales Prediction project aims to analyze and predict the weekly sales for Walmart stores across various regions in the United States. This project uses a dataset from Kaggle that includes sales data from multiple stores, alongside other variables like temperature, fuel price, CPI (Consumer Price Index), and unemployment rates. 
+                The primary objective is to understand the factors affecting the weekly sales and build a <span style="color:blue">predictive model using R programming language.</span> The R libraries rio is used for importing data, dplyr and tidyr is used for data manipulation, ggplot and plotly are used for data visualization. </p>
+            	
+		</section>
+
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Data Exploration and Visualization</h3>
+            <ul></ul>
+            <li>Dataset Overview: The dataset contains 6435 rows and 8 columns. The columns include Store ID, Date, Weekly Sales, Holiday Flag, Temperature, Fuel Price, CPI, and Unemployment rate. 
+                 The head function showing the first 10 rows of the dataset. </li>
+                 <div class="img-single"> <img src="images/proj-images/eda_walmart.png" alt="image" style="width:95%; height: 380px; float:left; margin-left: 5px;"> </div>
+            <li>Summary Statistics: Initial exploratory data analysis (EDA) showed that <span style="color:blue">weekly sales vary significantly across different stores, with some stores consistently outperforming others. The dataset also highlighted a notable spike in sales during the holiday season, particularly between Thanksgiving and Christmas.</span> </li>
+            </ul>
+        </section>
+
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Data Preprocessing</h3>
+            <ul>
+                <li>Handling Missing Values: The dataset from Kaggle was found to be clean with no missing or NaN values. However, a demonstration was given on how missing values could be introduced
+                     and then handled using <span style="color:blue">R’s mutate and filter functions from the dplyr library.</span></li>
+                <li>Data Transformation: The data was grouped by store number and aggregated to compute the total sales for each store, which allowed for a 
+                    comparison of sales performance across different locations</li>
+            </ul>
+        </section>
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Data Visualization</h3>
+            <ul>
+                <li>Weekly sales versus store Number: A bar plot showing total sales for each store indicated significant variation in sales performance, potentially due to regional differences.</li>
+                <div class="img-single"> <img src="images/proj-images/sales-store-walmart.png" alt="image" style="width:95%; height: 380px; float:left; margin-left: 5px;"> </div>
+                <li>Weekly sales over days in a year: Scatter plots of sales over time for individual stores revealed patterns such as increased sales during holidays.</li>
+                <div class="img-single"> <img src="images/proj-images/sales-day-walmart.png" alt="image" style="width:95%; height: 380px; float:left; margin-left: 5px;"> </div>
+                <li>Correlation Plots: Multiple scatter plots were created to explore the correlation between weekly sales and other variables like temperature, fuel price, CPI, and unemployment. It was observed that weekly sales were not strongly correlated with these factors, except for a slight negative correlation with unemployment rates.</li>
+                <div class="img-single"> <img src="images/proj-images/sales-feat-walmart.png" alt="image" style="width:95%; height: 450px; float:left; margin-left: 5px;"> </div>
+                <li>Correlogram showing the correlation strength (radius of the circle) and color (positive/negative) between different features in the dataset.</li>
+                <div class="img-single"> <img src="images/proj-images/corr-feat-walmart.png" alt="image" style="width:70%; height: 400px; float:left; margin-left: 5px;"> </div>
+                <li><span style="color:blue">Principal component analysis</span> was conducted to understand the hidden correlations between parameters. However, the first 2 components only explained only 36 % of the variance in the data and no correlation between parameters were found</li>
+
+
+
+            </ul>
+        </section>
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Machine Learning Modeling</h3> 
+            <ul>
+                <li>The data was fitted with the <span style="color:blue">linear regression, polynomial regression and the random forest regression models.</span></li>
+                <li>Linear Regression: RMSE =  high,  R2 score = 0.14 suggesting the model is underfit.</li>
+                <li>Polynomial Regression: A 5th order polynomial model regression resulted in lower RMSE and R2 score = 0.74 suggesting a decent model.</li>
+                <li>Random Forest: Utilized 300 trees and a sampling with replacement of 2000 samples resulted in the lowest RMSE and R2 score = 0.98 for the training data. The model evaluated on validation and test data resulted in little higher RMSE compared to training set, but achieved <span style="color:blue">R2 score = 0.93.</span>
+                     The results suggests that the random forest is doing a good job in the prediction of weekly sales.</li>
+            </ul>
+        </section>
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;">Conclusions</h3> 
+            <p>The project provides a comprehensive analysis of Walmart’s weekly sales data, revealing key trends and patterns that can inform business decisions. The insights gained from the exploratory 
+                data analysis suggest that the holidays and store locations, play a crucial role in driving sales. </p>
+            <p>The complete code for this R project can be found <span style="color:blue"><a href="https://github.com/savinshynu/DS-Projects/blob/master/Walmart-Sales-Prediction-R/Walmart-Sales-Prediction.pdf">here.</a> </span> </p>
+        </section>
+    
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

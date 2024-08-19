@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-right-half {
+            width: 65%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center;">Prediction of Medical Insurance Costs </h2>
+    </header>
+
+
+    <main style="color:black">
+        <section>
+            <h3 style="text-align:center;">Objective</h3>
+            <p style="text-align:justify;"> The goal of this project was to build a predictive model that estimates the annual medical insurance costs for individuals based on various demographic and regional features such as age, sex, body mass index (BMI), number of children, smoker status, and region. Accurate cost predictions can help insurance companies 
+                price policies more effectively and assist individuals in understanding their potential expenses.</p>
+		</section>
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+            <p>The dataset used for this project has been taken from Kaggle and consists of 1,338 records, each containing the following features:</p>
+            <ul>
+                <li>Age</li> 
+                <li>Sex</li> 
+                <li>BMI (Body Mass Index)</li>
+                <li>Number of children</li>
+                <li>Smoker status</li>
+                <li>Region</li>
+                <li>Insurance charges (target variable)</li>
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Exploratory Data Analysis (EDA)</h3>
+            <ul>
+                <li><span style="color:blue">Pandas, numpy and matplotlib </span> were used for EDA. Below shows the examples of how we can
+                     extract information of the data file using pandas.</li>
+                     <div class="img-single"> <img src="images/proj-images/ins-eda1.png" alt="image" style="width:70%; height: 200px; float:left; margin-left: 5px;"> </div>
+                <li>An example of how to extract females with age > 40 living in the northeast region.</li>
+                <div class="img-single"> <img src="images/proj-images/ins-eda2.png" alt="image" style="width:100%; height: 400px; float:left; margin-left: 5px;"> </div>
+                <li>Analyzed the distribution of the features and their relationships with the target variable (insurance charges).</li>
+                <div class="img-single"> <img src="images/proj-images/ins-dist-feat.png" alt="image" style="width:90%; height: 600px; float:left; margin-left: 5px;"> </div>
+                <li> <span style="color:blue"> Identified that age, smoker status and BMI are significant factors influencing insurance costs. Insurance charge increases as age 
+                    increases. Similarly, charges are higher for smokers compared to non-smokers. </span> </li>
+                <div class="img-single"> <img src="images/proj-images/ins-charge-feat.png" alt="image" style="width:90%; height: 550px; float:left; margin-left: 5px;"> </div>
+                <li>
+                    There is a clear distinction between smokers and non-smokers. Non-smokers have lower insurance cost compared to smokers. However, each smoker 
+                    and non-smokers have distinct 2 class of charges.  
+                </li>
+                <div class="img-single"> <img src="images/proj-images/ins-charge-age.png" alt="image" style="width:90%; height: 450px; float:left; margin-left: 5px;"> </div>
+                <li>Most of the non-smoker with high charges (greater than $30000) are obese.</li>
+                <div class="img-single"> <img src="images/proj-images/ins-charge-bmi.png" alt="image" style="width:60%; height: 380px; float:left; margin-left: 5px;"> </div>
+
+            </ul>
+        </section>
+        <section style="text-align:justify;"></section>>
+            <h3 style="text-align:center;"> Data Preprocessing</h3>
+            <ul>
+            <li>Checked for missing values, NaNs and removed duplicate rows.</li>
+            <li>Converted categorical variables (sex, smoker, region) into numerical format using one-hot encoding.</li>
+            <li>Split the dataset into training, validation and testing sets with a 60:20:20 ratio to 
+                evaluate the model's performance.</li>
+            <li>Standardized all the data using <span style="color:blue">scikit learn. </span> </li>
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;"> Machine Learning Modeling</h3>
+            <ul>
+                <li>Implemented multiple machine learning and deep learning models to predict insurance costs based on the available features.</li>
+                <li>The models used include:</li>
+                <ol> <span style="color:blue">
+                    <li> Linear regression</li>
+                    <li> Polynomial regression</li>
+                    <li> Support vector regression</li>
+                    <li> Decision Trees </li>
+                    <li> Random Forests</li>
+                    <li> XGBoost</li>
+                    <li>Dense Neural Networks </li> 
+                </span>
+                </ol>
+                <li>Models 1-5 were generated using  <span style="color:blue">the Scikit Learn, XGBosst utilized xgboost library 
+                    and dense neural networks used tensorflow library. </span></li>
+                <li>Used cross-validation to fine-tune the model and ensure it generalizes well to 
+                    unseen data using the test dataset</li>
+
+            </ul>
+        </section>
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;"> Results</h3>
+            <ul>
+                <li>Assessed the different model's performance using the <span style="color:blue">root mean squared error (RMSE) 
+                    and the coefficient of determination, R-squared. </span>  The plot below show the RMSE and R2 score measured for different models.</li>
+                <div class="img-single"> <img src="images/proj-images/ins-metrics.png" alt="image" style="width:90%; height: 300px; float:left; margin-left: 5px;"> </div>
+
+                <li>The Polynomial regression, random forest and dense neural networks performed more or less equally with an <span style="color:blue">R2 score of 80% and closer RMSE values. </span> </li>
+                <li>The plot below shows the charges vs age, prediction and actual values for different models.</li>
+                <div class="img-single"> <img src="images/proj-images/insurance-fin-pred.png" alt="image" style="width:100%; height: 400px; float:left; margin-left: 5px;"> </div>
+
+            </ul>
+        </section>
+        <section style="text-align:justify;">
+            <h3 style="text-align:center;"> Conclusion</h3>
+            <p>This project successfully developed a model to predict medical insurance costs, offering valuable insights into the factors that drive expenses. From our modeling effort, DNN seems 
+                to doing the best job for predicting low insurance charges and RF for predicting high insurance charges. The model can be further improved by collecting more data or additional features. 
+                These predictions can aid insurance companies in pricing policies and help customers anticipate their healthcare expenses more accurately.</p>
+            <p>The complete code for this project can be found <span style="color:blue"><a href="https://github.com/savinshynu/DS-Projects/blob/master/Insurance-Cost-Prediction/insurance-cost-prediction.ipynb">here.</a> </span> </p>
+        </section>
+    </main>
+
+    <footer>
+     
+    </footer>
+</body>
+</html>

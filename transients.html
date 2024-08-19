@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+	<style>
+        .img-right-half {
+            width: 55%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+	<style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center; color:black">Detection of Astrophysical Explosions through Image Processing</h2>
+    </header>
+
+
+    <main style="color:black">
+        <section>
+            <h3 style="text-align:center;">Introduction</h3>
+            
+			  <p style="text-align:justify;"> Astrophysical explosions (a.k.a cosmic transients) are catastrophic events in space that release enormous amounts of energy.
+				These explosions occur in various forms, each associated with different astrophysical processes includes events like supernovae, stellar flares, etc. </p>
+			  
+			  <p style="text-align:justify;">In this project, I developed a <i> <span style="color:blue"> Python based (numpy, pandas, scipy, matplotlib, h5py) image processing pipeline to process large amounts of images </span></i> from the 2 LWA radio telescopes (LWA1 and LWA-SV) in New Mexico
+			  to detect energetic events occurring in our universe. Basically, we track rapid changes in the intensity of different astronomical sources in the images on 5 second time scales. 
+			  This work has resulted in a scientific publication:
+			  <span style="color:blue"> <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ab07c6">Link to the paper. </a> </span>
+			  </p>
+  
+			  <p style="text-align:justify;">
+			  The pipeline utilized <i><span style="color:blue">data collection, data cleaning, image processing (background subtraction, threshold-based detection, tracking of objects), classification of candidates, anomaly detection using images
+			  and time series analysis, and visualization </span> </i> of interesting new source candidates.
+			  </p>
+		
+			</section>
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+			<p style="text-align:justify;">
+				The study utilized over 120 TBs of images from the LWA radio telescope. The image data used in this study can be found at the <span style="color:blue"> <a href="https://lda10g.alliance.unm.edu"> LWA archive</a> </span>. 
+				The images are stored as big NumPy arrays of the shape (x-pixel, y-pixel, channels, time-steps) in a telescope specific format similar to HDF5 (having a header and data). The plot on the right shows an example of 
+				how the image of sky looks like in different polarization.</p>
+				<div class="img-single"> <img src="images/proj-images/lwa-sky.png" alt="sky image" style="width:85%;height:600px;margin-left: 75px;"> </div>
+					
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Data Processing Pipeline</h3>
+            <p>The python pipeline will feed the images and process the images to identify explosions. The different stages of image processing consist of:</p>
+			<ol> <li> Data preprocessing: </li>
+				    <ul>
+						<li>Removed bad images affected by radio signal interference.  </li>
+						<li> Masked different region of the images containing steady sources and regions affected by signal interference. </li>
+					</ul>
+				<li>Anomaly detection methodology: <div class="img-right-half"><img src="images/proj-images/masked-sky.png" alt="image" style="width:400px;height:400px; float: right; margin-left: 10px;"> </div> </li>	
+					<ul>
+						<li>Utilized image subtraction algorithm and threshold-based detection to identify explosions.  </li>
+						<li>The pipeline subtracted the average of the previous six images
+							from the current image to detect candidates.</li>
+                        <li> The pixel regions in the images with intensities greater than a signal to noise ratio threshold of 6 are chosen as candidates.  </li>	
+						<li>Plot on right shows how the image of the 
+							sky looks after preprocessing and image subtraction.</li>				
+						</ul>
+				<li>Classfication of Candidates:</li>
+					<ul>
+						<li>Visualization of extracted image and time series analysis.</li>
+						<li>Probabilistic calculation and statistical measurements like signal to noise ratio, kurtosis of the time series to understand the significance.</li>
+						<li>Utilizing object tracking using mean shift of pixel intensities in images.</li>
+						<li>Finally, candidates are classified into true cosmic explosion, satellites, airplanes, radio signal disruption events, atmospheric disruptions and meteors.</li>
+					</ul>
+
+			</ol>
+		
+		
+		</section>
+		<section>
+			<h3 style="text-align:center;">Results</h3>
+			<ul style="text-align:justify;">
+				<li>The study successfully detected a potential bright cosmic explosion on October 18, 2017, with a duration of 15-20 seconds. The plot below shows the image of the explosion detected 
+					and extracted time series from each station.</li>
+					<div class="img-single"> <img src="images/proj-images/transient.png" alt="image" style="width:75%%;height:550px;margin-left: 100px;"> </div>
+				<li>Other interesting plots include the 1-hour time series analysis of the event, scattered intensity plots from each telescope and histogram plots of the intensities from the time 
+					series showing that this explosion is statistically and probabilistically significant. See the plots below.</li>
+					<div class="img-single">
+					<img src="images/proj-images/transient-ts.png" alt="image" style="width:97%;height:160px;margin-left: 20px;"> </div>
+					<div class="img-container"> <img src="images/proj-images/signal-dist.png" alt="image" style="width:100%;height:300px;float:left; margin-left: 10px;"> </div>
+					<div class="img-container"> <img src="images/proj-images/sig-dist-hist.png" alt="image" style="width:100%;height:330px;float:right, margin-left: 10px;"> </div>
+			</ul>
+		</section>
+		<section style="text-align:justify;">
+			<h3 style="text-align:center;">Conclusion</h3>
+			<p>This project represents a significant step in the exploration of the cosmic explosion using radio telescopes and image processing. The detection of a potential cosmic event underscores the importance of continuous monitoring and 
+				the need for further studies to understand the nature and origin of these enigmatic sources. </p>
+			<p>The <span style="color:blue"><a href="https://github.com/savinshynu/Imager-tools">Imager-tools </a> </span>repository contains the data processing pipeline codes. For more details on how the image processing pipeline works, see this <span style="color:blue"> <a href="https://github.com/savinshynu/Imager-tools/blob/master/Orville_image_processing_pipeline.ipynb">Jupyter Notebook.<a> </span> </p>	
+		</section>
+    </main>
+
+    <footer>
+    
+    </footer>
+</body>
+</html>

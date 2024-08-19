@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center; color:black">Detection of Meteors through Image Processing</h2>
+    </header>
+
+
+    <main style="color:black">
+        <section>
+            <h3 style="text-align:center;">Introduction</h3>
+            <p style="text-align:justify;">Meteors occur when solid particles from space enters Earth's atmosphere at high velocities, burning up and producing light. For several decades, most of the meteor studies have been conducted using optical cameras and radars. Recent research has shown that meteors can be detected as small-scale explosions
+                 in the sky images from radio telescopes. This phenomenon is known as meteor radio afterglow.</p>
+            <p style="text-align:justify;">
+                In this project, I utilized the <span style="color:blue"><i> python-based image processing </i> </span>pipeline (discussed <span style="color:blue"> <a href="transients.html">here</a> </span>) to detect more than 100 meteors and study their properties. The pipeline utilized <span style="color:blue"> <i>data collection, data cleaning, image processing (background subtraction, threshold-based detection,
+                tracking of objects), classification of candidates, anomaly detection 
+                using images and time series analysis, and visualization </i>  </span> of interesting new source candidates.
+            </p>
+            <p>
+                This project resulted in 3 scientific publications:
+                <ol>
+                    <li> <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JA026922"> Testing the Radiation Pattern of Meteor Radio Afterglow </a> </li>
+                    <li> <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2021JA029296"> Broadband Imaging to Study the Spectral Distribution of Meteor Radio Afterglows </a> </li>
+                    <li> <a href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2023JA032272"> Spatially Resolved Observations of Meteor Radio Afterglows with the OVRO-LWA </a> </li>
+                </ol>
+            </p>
+                
+		
+		</section>
+
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+            <p style="text-align:justify;"> Collected around <span style="color:blue">170 TBs</span> of sky images from 2 LWA telescopes (LWA1 and LWA-SV in New Mexico) and <span style="color:blue">8 TBs</span> of raw time series data from OVRO-LWA telescope in California. </p>
+        </section>
+
+        <section style="text-align:justify;">
+        <h3 style="text-align:center;">Methodologies to study the properties of meteors</h3>
+        <ol>
+            <li> Building isotropic radiation model of meteors</li>
+            <ul>
+                <li>Built <span style="color:blue">predictive models</span> to understand the telescope sensitivity. Plot on the left shows the sensitivity of LWA telescope as function of elevation.
+        
+                </li>
+                <li>Calculated the luminosity (brightness) of meteors detected in each LWA telescope and they follow an isotropic model 
+                    (light travels uniformly in all directions). Plot on right shows the brightness measurements and expected model. </li>
+                    <div class="img-container"> <img src="images/proj-images/meteor-flux.png" alt="image" style="width:100%; height: 270px; float:left; margin-left: 5px;"> </div>
+                    <div class="img-container"> <img src="images/proj-images/meteors-rad-pattern.png" alt="image" style="width:100%; float: right; margin-left: 5px;"> </div>
+                
+                <li>Histogram distribution of altitude shows that meteors peak at a distance of 100 km heights. Figure below shows altitudes obtained through
+                     different techniques. </li>
+                    <div class="img-single"></div> <img src="images/proj-images/meteor-alt-dist.png" alt="image" style="width:95% ;height:400px; float:right; margin-left: 20px;"> </div>
+                <li><span style="color:blue">Monte Carlo simulations</span> were conducted to randomly sample the properties of meteors to reproduce the isotropic model. A <span style="color:blue"> Kolmogorow-Smirnov (K-S) test </span> was
+                     used to compare the distribution of actual values and sampled values from simulation.</li>     
+            </ul>
+            <li>Developing the energy distribution model for meteors. </li>
+            <ul>
+                <li>86 meteors were detected through the image processing pipeline and their spectra (energy as a function of frequency) were extracted from the
+                     images and they were fitted with <span style="color:blue"> power law and log-normal models. </span> Spectra fitted with different models are shown below</li>
+                   <div class="img-single">  <img src="images/proj-images/meteor-spectra.png" alt="image" style="width:95%;height:300px; float:right; margin-left: 10px;"> </div>
+                <li> <span style="color:blue">Akaike Information Criterion (AIC) score</span> was used to compare the model scores.  </li>
+                <li>Plotted the distribution of different measured properties and they are shown below:</li>
+                <div class="img-single">  <img src="images/proj-images/meteors-feat-dist.png" alt="image" style="width:95%;height:550px; float:right; margin-left: 10px;"> </div>
+                <li><span style="color:blue">Pearson correlation coefficient</span> was calculated to understand the correlation between different measured properties. In the plots below, r = correlation coefficient and p = p-value of non-correlation.</li>
+                <div class="img-single">  <img src="images/proj-images/meteors-scatter-hist.png" alt="image" style="width:95%;height:550px; float:right; margin-left: 10px;"> </div>
+                <li> <span style="color:blue">Principal component analysis</span> was conducted to understand the hidden correlation between features of meteors. The top left plot below shows how much each feature contributes
+                to the principal components. Top right shows the cumulative variance of the components. Bottom plot shows the biplot showing the strength and correlation between feature vectors.</li>    
+                <div class="img-single">  <img src="images/proj-images/meteors-pca.png" alt="image" style="width:95%;height:550px; float:right; margin-left: 10px;"> </div>
+
+            </ul>
+        <li> Creating high spatial resolution images of meteors</li>
+        <ul>
+            <li>Collected 8 TBs of time series data from OVRO-LWA telescope.</li>
+            <li>Removed channels and antennas with outlier power levels. <span style="color:blue">Fast Fourier transform(FFT)</span> on the raw data yielded 
+                sky images which was fed into the python-based pipeline to detect meteors.</li>
+            <li>Fourier domain corrections and deconvolutions of the raw data was used to improve the quality of the images.</li>
+            <li>The higher resolution images were carried out to understand the emission mechanism. Figure below shows an image of meteor with low spatial resolution (left)
+                and high resolution revealing small-scale features (right).
+            </li>
+            <div class="img-single">  <img src="images/proj-images/meteors-ovro.png" alt="image" style="width:100%;height:300px; float:right; margin-left: 10px;"> </div>
+
+        </ul>
+    </ol>
+        </section>
+        <section> <h3 style="text-align:center;">Conclusion</h3>
+        <p style="text-align:justify;">Statistical analysis of meteors with radio images enabled a greater understanding of the different meteor properties. Meteors play a great role in maintaining the ionospheric plasma density 
+         which is a key parameter for satellite and ground based communications.</p>
+        </section>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+</html>

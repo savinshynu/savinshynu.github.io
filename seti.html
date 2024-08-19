@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Savin Shynu Varghese</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .img-container {
+            width: 50%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-single {
+            width: 100%; /* Adjust width as needed */
+            float: left;
+        }
+    </style>
+    <style>
+        .img-right-half {
+            width: 65%; /* Adjust width as needed */
+            float: right;
+        }
+    </style>
+</head>
+
+<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+    <!-- Main content of your page goes here -->
+    <header>
+        <h2 style="text-align:center;">SETI: Searching for Extraterrestrial Intelligence</h2>
+    </header>
+
+
+    <main style="color:black;text-align:justify;">
+        <section>
+            <h3 style="text-align:center;">Overview</h3>
+            <ul>
+                <li>Developed various tools to test and commission the digital signal processing software of an innovative compute cluster, COSMIC, which 
+                    can process 3 TB/s of continuously streaming time series data from 27 radio telescopes to look for alien signals. </li>
+                <li>COSMIC is a big compute infrastructure hosted at the VLA radio telescope site in New Mexico consisting of 26 GPU servers
+                    and 3 FPGA Servers.</li>
+                <li>Testing and validating the raw voltage time series data and the image data from the observing system. Developed software to calibrate the data and verify different signal processing methods.</li>
+                <li>The <span style="color:blue"><a href="https://github.com/savinshynu/VLA_COSMIC">VLA COSMIC </a></span>repository contains the Python tools developed to commission the COSMIC system.</li>
+            </ul>
+		
+		</section>
+
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+             <ul>
+                <li>Time series data in the form of voltages are collected in realtime from multiple radio telescopes. The high incoming data rate of 3TB/s
+                     requires building pipelines which need to process the data in real-time or quasi-realtime. </li>
+                <li>Incoming data stream is split into multiple bandwidths and 5 minutes of data chunks are stored in multiple parallel GPU servers hosting NVME Cards.
+                     The time series data is stored in a format called Guppi raw files. (with header and data in multiple blocks)</li>
+             </ul>
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Data Preprocessing</h3>
+            <ul>
+                <li>A short time fourier transform (STFT) of the time series data from a single antenna element is carried out to create spectrograms, 
+                    which is a 2D array in time and frequency. </li>
+                <li>The length of the STFT decides the size of the time steps and frequency channels. 
+                    Further these spectrograms undergo a cross correlation process as well as an addition process.</li>
+                <li>The cross-correlation process is carried out for each pair of antennas resulting n*(n-1)/2 values and an inverse FFT will generate a sky image.</li>
+                <li>The spectrograms from all the antennas can be added in phase to enhance sensitivity towards a particular direction in the sky. This is helpful to observe any particular astronomical sources. </li>
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">SETI signal Search</h3>
+            <ul>
+                <li>In this work, we search for  a linearly drifting signal with narrow bandwidth (~ few Hz) in the spectrogram. </li>
+                <li>Below is an example of such a signal in the spectrogram from multiple antennas. X axis has the frequency information in megahertz and Y axis has the time information in milliseconds. We can clearly see the signal frequency is slowly changing over time.</li>
+                <div class="img-single"> <img src="images/proj-images/seti-signal.png" alt="image" style="width:90%; height: 550px; float:left; margin-left: 5px;"> </div>
+                <li>Dedrifting of signal using a range of trial drift rate (how much frequency as function of time) values is used to find such signals. <span style="color:blue"> <a href="https://github.com/UCBerkeleySETI/turbo_seti">turboseti</a> </span>
+                python package is used to find such signals.</li>
+                <li>Once the signal is found, the corresponding signal information and spectrogram from all elements are saved into a MySQL database.</li>
+                <li>From January 2023 onwards, COSMIC is actively searching for alien signals in this universe. Below is an example detection of the so-called alien signal detected from Voyager space probe, 
+                    the furthest artificial object that we know of at 15 billion miles from Earth.</li>
+                    <div class="img-single"> <img src="images/proj-images/voyager.png" alt="image" style="width:65%; height: 500px; float:left; margin-left: 5px;"> </div>
+
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Machine Learning Classification of SETI candidates</h3>  
+            <p> The COSMIC MySQL database currently have millions of SETI candidates and most of them are false positives arising from radio signal interference and instrumental effects. I am currently working
+                 on an unsupervised machine learning approach to classify the SETI candidates.  The approach includes:</p>
+            <ul>
+                <li> SQL queries to collect candidate data from database </li>
+                <li>Extraction of different signal characteristics of a technosignature from 100,000 candidates.</li>
+                <li> Dimension reduction of the extracted features using techniques like principal component analysis (PCA) and t-SNE. </li>
+                <li>Clustering of the reduced dimensions using K-means clustering to understand different classes of signals.</li>
+
+            </ul>
+        </section>
+        <section>
+            <h3 style="text-align:center;">Results</h3>  
+            <p> Works is still in progress</p>
+            <p> Checkout this <span style="color:blue"> <a href="https://www.seti.org/press-release/massive-radio-array-search-extraterrestrial-signals-other-civilizations">press release </a> </span> 
+                and <span style="color:blue"> <a href="https://iopscience.iop.org/article/10.3847/1538-3881/ad0fe0/meta#">publication </a> </span> to know more about COSMIC.</p>
+        </section>
+    </main>
+
+    <footer>
+     
+    </footer>
+</body>
+</html>
