@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+<body style="margin:10px 350px 10px 350px;font-family:'Georgia'; font-size:medium; background-color: snow;">
     <!-- Main content of your page goes here -->
     <header>
         <h2 style="text-align:center;">Coronary Heart Disease Classification</h2>
@@ -58,9 +58,9 @@
                 <li>Exploration: The dataset was examined for missing values, distribution of features, and correlation among variables. It was found that the dataset 
                     is imbalanced, with only about 15% of the population having a predicted ten-year risk of CHD.</li>
                 <li>Plot showing the histogram distribution of different features. </li>
-                <div class="img-single"> <img src="images/proj-images/hist_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin-left: 5px;"> </div>
+                <div class="img-single"> <img src="images/proj-images/hist_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin: 10px 10px 10px 10px;"> </div>
                 <li>Plot showing the correlation between different features in the dataset.</li>
-                <div class="img-single"> <img src="images/proj-images/corr_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin-left: 5px;"> </div>
+                <div class="img-single"> <img src="images/proj-images/corr_feat_chd.png" alt="image" style="width:95%; height: 650px; float:left; margin: 10px 10px 10px 10px;"> </div>
                 <li>Missing Values: Missing values were identified in several columns (e.g., education, cigsPerDay, BPMeds). These missing values were 
                     imputed using the median of the respective columns.</li>
                 <li>Feature Scaling: Standardization (z-score normalization) was applied to the dataset to ensure that all features contribute equally to the model training process.
@@ -95,7 +95,7 @@
             <ul>
                 <li>Best Model: Interestingly, the logistic regression model performed the best compared to the other complex tree and neural network models, showing the highest accuracy and F1-score. The accuracy score of the models were mostly close to 83%. 
                     However the precision, recall and F1-score varied a lot.</li>
-                    <div class="img-single"> <img src="images/proj-images/metrics-chd.png" alt="image" style="width:98%; height: 300px; float:left; margin-left: 5px;"> </div>
+                    <div class="img-single"> <img src="images/proj-images/metrics-chd.png" alt="image" style="width:98%; height: 300px; float:left; margin: 10px 10px 10px 10px;;"> </div>
                 <li>Feature Importance: The most significant predictors of CHD identified by the best model include age, systolic BP, and prevalence of hypertension.</li>
                 <li>The reason for having low F1 scores is because of the low recall score of models. This arises from imbalanced data where models are not learning the features of the underrepresented group well enough. </li>
                 <li>Class weights were introduced to tackle this imbalance issue by adding higher penalty to the misclassification of the minority class. This step increased the recall; however, it reduced the precision of the model.</li>
@@ -106,7 +106,7 @@
             <h3 style="text-align:center;">Model Hyperparameter Tuning</h3> 
             <p>The best-performing model (logistic regression) was fine-tuned using grid search and randomized search to optimize its hyperparameters. This further improved the model's performance.</p>
             <p>Below shows the final confusion matrix and classification report of the test data using the fine-tuned logistic regression model.</p>
-            <div class="img-single"> <img src="images/proj-images/final-res-chd.png" alt="image" style="width:98%; height: 600px; float:left; margin-left: 5px;"> </div>
+            <div class="img-single"> <img src="images/proj-images/final-res-chd.png" alt="image" style="width:98%; height: 600px; float:left; margin: 10px 10px 10px 10px;"> </div>
         </section>
         <section>
             <h3 style="text-align:center;">Conclusion</h3> 

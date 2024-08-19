@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body style="margin: 100px;font-family:'Georgia'; font-size:medium; background-color: snow;">
+<body style="margin:10px 350px 10px 350px;font-family:'Georgia'; font-size:medium; background-color: snow;">
     <!-- Main content of your page goes here -->
     <header>
         <h2 style="text-align:center;">SETI: Searching for Extraterrestrial Intelligence</h2>
@@ -68,7 +68,7 @@
             </ul>
         </section>
         <section>
-            <h3 style="text-align:center;">SETI signal Search</h3>
+            <h3 style="text-align:center;">SETI Signal Search</h3>
             <ul>
                 <li>In this work, we search for  a linearly drifting signal with narrow bandwidth (~ few Hz) in the spectrogram. </li>
                 <li>Below is an example of such a signal in the spectrogram from multiple antennas. X axis has the frequency information in megahertz and Y axis has the time information in milliseconds. We can clearly see the signal frequency is slowly changing over time.</li>
@@ -87,7 +87,7 @@
             <p> The COSMIC MySQL database currently have millions of SETI candidates and most of them are false positives arising from radio signal interference and instrumental effects. I am currently working
                  on an unsupervised machine learning approach to classify the SETI candidates.  The approach includes:</p>
             <ul>
-                <li> SQL queries to collect candidate data from database </li>
+                <li> SQL queries to collect candidate data from the SQL database. </li>
                 <li>Extraction of different signal characteristics of a technosignature from 100,000 candidates.</li>
                 <li> Dimension reduction of the extracted features using techniques like principal component analysis (PCA) and t-SNE. </li>
                 <li>Clustering of the reduced dimensions using K-means clustering to understand different classes of signals.</li>
