@@ -30,19 +30,74 @@
     <header>
         <h2 style="text-align:center;">Detection of Deepfake Audio using Deep Learning</h2>
     </header>
+   
 
-
-    <main style="color:black">
+    <main style="color:black; text-align:justify;">
+        <p style="font-style: italic"> This project utilized <span style="color:blue"> python, numpy, pandas, matplotlib, librosa, scikit-learn, keras, tensorflow and  digital signal processing </span> </p>
         <section>
-            <h3 style="text-align:center;">Overview</h3>
-            <p> This work is still in progress and this page will be updated soon.</p>
+            <h3 style="text-align:center;">Motivation</h3>
+            <p> Deepfake audio poses a significant societal threat due to its potential to deceive, manipulate, and cause harm in areas like banking, customer service, and voice authentication systems. This project 
+                focuses on developing deep learning-based models to detect different types of deepfake audio, which can prevent disinformation and security breaches.</p>
+		</section>
+
+        <section>
+            <h3 style="text-align:center;">Data Collection</h3>
+            <p>The <span style="color:blue"> <a href="https://datashare.ed.ac.uk/handle/10283/3336" >ASVSpoof 2019 </a> </span> English dataset was utilized, containing audio files categorized into training, development, and evaluation sets. Each of these datasets contain the audio data from different speakers and spoofing methods. The dataset for this work is stored in the dagshub repository under this <a href = "https://dagshub.com/Omdena/BangladeshChapter_AudioShield">link</a>. 
+                The dataset includes genuine ("bonafide") and spoofed audio samples, generated using various voice-conversion (VC) and text-to-speech (TTS) methods. </p>        
+        </section>
+        
+        <section>
+            <h3 style="text-align:center;"> Exploratory Data Analysis (EDA) and Preprocessing</h3> 
+            <p>In the EDA step, pandas was used for data aggregation and  librosa library was utilized to visualize audio time series and extract spectrogram and Mel spectrogram features. This analysis revealed key features such as the duration and
+                 frequency content of audio files, allowing the extraction of relevant information for model development.  </p>
+            <p>The initial dataset was imbalanced, with far fewer bonafide samples compared to spoofed ones. To avoid bias, the training dataset was balanced by randomly sampling equal numbers of bonafide and spoofed samples from the training dataset. Mel spectrograms (2D Fourier representations of the audio data) were extracted from the audio files to serve as input features for the deep learning models.
+                The plots below show the time series (top) and the corresponding 2D Mel spectrogram of an audio sample (bottom).</p>
+                <div class="img-single"> <img src="images/proj-images/time_series.png" alt="image" style="width:85%; height: 410px; float:left; margin: 10px 10px 10px 10px;"> </div>
+                <div class="img-single"> <img src="images/proj-images/mel_spectrogram.png" alt="image" style="width:90%; height: 430px; float:left; margin: 10px 10px 10px 10px;"> </div>
+                Plot on right shows the histogram of the duration of the audio samples used in this study.
+                <div class="img-right-half"> <img src="images/proj-images/dur_files.png" alt="image" style="width:90%; height: 250px; float:left; margin: 10px 10px 10px 10px;"> </div>
+
+        </section>
+
+        <section>
+            <h3 style="text-align:center;"> Model Development </h3> 
+            <p>Two deep learning models based on Convolutional Neural Networks (CNN) were developed for this project:</p>
             <ul>
-                <li> The Jupyter notebook for this work can be found <span style="color:blue"><a href="https://github.com/savinshynu/AudioShield/blob/master/Notebooks/SSV_audioshield-omdena.ipynb">here.</a></span></li>
-                <li> The Audioshield app for detecting deepfake audio can be found <span style="color:blue"><a href="https://audioshield-app-ssv.streamlit.app">here.</a></span></li>
+                <li><span style="color:blue">Simple CNN</span>: A four-layer CNN was initially built with the following architecture. Convolution layers followed by max-pooling layers.
+                    Further, flattening and fully connected layers followed by a binary classification output (bonafide vs. spoofed). The model achieved a validation accuracy of 96% and a 0.96 F1-score on the cross-validation dataset for both classes.
+                </li>
+                <li>
+                    <span style="color:blue"> ResNet50 </span>: A more complex architecture known as ResNet50 was implemented, specifically trained on spectrograms. Due to the nature of the input data (single-channel spectrograms), the ResNet architecture was trained from scratch without using pre-trained weights. Due to computational limitations, the model was trained only for 7 epochs resulting in 97% accuracy and 0.97 F1-score for both classes on the cross-validation dataset. 
+                    The plot below shows the model accuracies on train and cross validation data during the training epochs.
+                    <div class="img-single"> <img src="images/proj-images/model_accuracy.png" alt="image" style="width:75%; height: 400px; float:left; margin: 10px 10px 10px 10px;"> </div>
+
+                </li>
             </ul>
+        </section>
+
+        <section>
+            <h3 style="text-align:center;">Results</h3>
+            <p> Both models were evaluated on balanced and imbalanced test data using metrics such as precision, recall, and F1-score. For the balanced test data, the simple CNN achieved a high accuracy of 93% and an F1 score of 0.93 for detecting spoofed and real audio. At the same time, the ResNet 50 model achieved 92 % accuracy and 0.92 score for both classes. When using an imbalanced dataset containing a large proportion of spoofed samples, the model performance metrics go down for the bonafide class. 
+                The plots below show the confusion matrix for the simple CNN model (left) and the ResNet 50 model (right) while evaluated using a balanced test data containing 2000 bonafide and spoof samples.</p>
+                <div class="img-container"> <img src="images/proj-images/as_conf_cnn.png" alt="image" style="width:98%; height: 320px; float:left; margin: 10px 10px 10px 10px;"> </div>
+                <div class="img-container"> <img src="images/proj-images/as_conf_resnet.png" alt="image" style="width:98%; height: 320px; float:left; margin: 10px 10px 10px 10px;"> </div>
             	
 		</section>
 
+        <section>
+            <h3 style="text-align:center;"> Model Deployment </h3>
+            The developed models were later deployed as a web application in the Streamlit cloud, Hugging Face, and AWS EC2.
+             Below is what the app looks like and the <span style="color:blue"> <a href="https://huggingface.co/spaces/savinshynu/audioshield-hugg">link</a> </span> to the web application. Try to open in Google Chrome.
+             <div class="img-single"> <img src="images/proj-images/app_english.png" alt="image" style="width:75%; height: 500px; float:left; margin: 10px 10px 10px 10px;"> </div>
+        </section>
+        
+        <section>
+            <h3 style="text-align:center;"> Conclusion </h3>
+            <p>The project successfully developed two deep learning models capable of detecting deepfake audio with high accuracy and deployed them 
+                as web applications.  The combination of EDA, feature extraction, and model architecture choices was critical in achieving these results. </p>
+
+            <p>The repository for the project can be found  <span style="color:blue"><a href="https://github.com/savinshynu/AudioShield"> here </a> </span> and the notebook can be found at this <span style="color:blue"> <a href="https://github.com/savinshynu/AudioShield/blob/master/Notebooks/SSV_audioshield-omdena.ipynb"> link.</a> </span> </p>
+        </section>
         
     </main>
 
